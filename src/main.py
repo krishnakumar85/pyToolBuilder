@@ -7,4 +7,4 @@ Created on 27-Jun-2012
 from Generic import gconfig
 
 if __name__ == '__main__':
-    print gconfig.auth.atrpo_login
+    print gconfig.auth.atpro_login

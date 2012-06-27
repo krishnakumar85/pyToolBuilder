@@ -16,20 +16,27 @@ class Config(object):
         Constructor
         '''
         self.file = filename
+        self.conf = None
+
         print filename
 
     def parse(self):
-        self.confobj = ConfigParser.ConfigParser()
-        self.confobj.read('..\\config.txt')
-        print self.confobj.defaults()
+        self.confobj = ConfigParser.RawConfigParser()
+        open(self.file, 'r').close()
+        self.confobj.read(self.file)
 
     def __getattr__(self, name):
         print name
-        out = self.confobj.sections()
-        print out
+        sections = self.confobj.sections()
+        #print sections
+        if name in sections:
+            self.conf = self.confobj.items(name)
 
-        print out['auth']['atrpo_login']
-        print 'ver --'
+        dictconf = {}
+        for tupconf in self.conf:
+            dictconf[tupconf[0]] = tupconf[1]
+
+        return dictconf
         #sec = self.confobj.get(name)
 
         #return object.__getattribute__(self, *args, **kwargs)
