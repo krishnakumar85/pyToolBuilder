@@ -1,6 +1,11 @@
 import Parser
+import Logger
 
-print 'init'
+print 'initializing ' + __name__
+
 gconfig = Parser.Config('../config.txt')
 gconfig.parse()
-print 'done'
+
+glogger = Logger.Logger('..\log')
+
+print 'done ' + __name__

@@ -15,22 +15,24 @@ class Config(object):
         '''
         Constructor
         '''
-        self.file = filename
+        self.conffile = filename
         self.conf = None
 
         print filename
 
     def parse(self):
         self.confobj = ConfigParser.RawConfigParser()
-        open(self.file, 'r').close()
-        self.confobj.read(self.file)
+        open(self.conffile, 'r').close()
+        self.confobj.read(self.conffile)
 
     def __getattr__(self, name):
-        print name
+        print 'Section: ', name
         sections = self.confobj.sections()
         #print sections
         if name in sections:
             self.conf = self.confobj.items(name)
+        else:
+            self.conf = self.confobj.items('global')
 
         dictconf = {}
         for tupconf in self.conf:

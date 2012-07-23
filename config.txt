@@ -1,3 +1,13 @@
+[dirs]
+inputs = ..\Inputs
+outputs = ..\Outputs
+temp = ..\Temp
+templates = ..\Templates
+tests = ..\Tests
+
+[logger]
+logfile = mylog.txt
+
 [auth]
 atpro_login = st37345
 atpro_pass = depart0
